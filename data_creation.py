@@ -19,8 +19,8 @@ def generate_data(n_samples,
     anomalies = np.random.normal(loc=anomaly_loc, scale=anomaly_scale,
                                  size=(int(n_samples * anomaly_ratio), 1))
     data = np.concatenate((data, anomalies), axis=0)
-    # Сортировка данных по времени
-    data = data[np.argsort(data[:, 0])]
+    # Округление данных до одного десятичного знака
+    data = np.round(data, 1)
     return data
 
 
