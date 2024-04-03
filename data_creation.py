@@ -13,15 +13,36 @@ def generate_data(n_samples,
                   anomaly_ratio=0.1,
                   anomaly_loc=30,
                   anomaly_scale=10):
+
     # Генерация данных без аномалий
     data = np.random.normal(loc=20, scale=5, size=(n_samples, 1))
+
+    # Вычисление количества аномалий
+    n_anomalies = int(n_samples * anomaly_ratio)
+
     # Добавление аномалий
     anomalies = np.random.normal(loc=anomaly_loc, scale=anomaly_scale,
-                                 size=(int(n_samples * anomaly_ratio), 1))
+                                 size=(n_anomalies, 1))
     data = np.concatenate((data, anomalies), axis=0)
+
     # Округление данных до одного десятичного знака
     data = np.round(data, 1)
-    return data
+
+    # Создание второго столбца с метками аномалий
+    labels = np.zeros(data.size, dtype=int)
+    labels[n_samples:] = 1  # Метка 1 для аномалий
+
+    # Создание структурированного массива (списка кортежей)
+    dtype = [('data', np.float32), ('labels', np.int32)]
+    data_with_labels = np.empty(data.size, dtype=dtype)
+    data_with_labels['data'] = data.flatten()
+    data_with_labels['labels'] = labels
+
+    # Создание словаря из списка кортежей
+    data_dict = {'temperature': [temp for temp, anomaly in data_with_labels],
+                 'anomaly': [anomaly for temp, anomaly in data_with_labels]}
+
+    return data_dict
 
 
 # Получение количества наборов данных
@@ -36,7 +57,7 @@ for i in range(n_datasets):
                                anomaly_ratio=0.1,
                                anomaly_loc=30+i*5,
                                anomaly_scale=10+i*2)
-    df_train = pd.DataFrame(train_data, columns=['temperature'])
+    df_train = pd.DataFrame(train_data)
     df_train.to_csv(f'train/temperature_train_{i+1}.csv', index=False)
 
     # Генерация и сохранение данных для тестирования
@@ -44,5 +65,5 @@ for i in range(n_datasets):
                               anomaly_ratio=0.1,
                               anomaly_loc=30+i*5,
                               anomaly_scale=10+i*2)
-    df_test = pd.DataFrame(test_data, columns=['temperature'])
+    df_test = pd.DataFrame(test_data)
     df_test.to_csv(f'test/temperature_test_{i+1}.csv', index=False)
