@@ -60,10 +60,10 @@ n_datasets=$1
 python data_creation.py $n_datasets
 
 # Запуск скрипта предобработки данных
-python model_preprocessing.py
+python model_preprocessing.py $n_datasets
 
 # Запуск скрипта подготовки и обучения модели
-python model_preparation.py
+python model_preparation.py $n_datasets
 
 # Запуск скрипта тестирования модели
-python model_testing.py
+python model_testing.py $n_datasets
