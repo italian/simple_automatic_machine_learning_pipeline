@@ -1,20 +1,20 @@
-[![ru](https://img.shields.io/badge/lang-ru-red.svg)](https://github.com/italian/simple_automatic_machine_learning_pipeline/blob/main/README.ru.md)
+[![en](https://img.shields.io/badge/lang-en-blue.svg)](https://github.com/italian/simple_automatic_machine_learning_pipeline/blob/main/README.md)
 
-# Simple automatic machine learning pipeline
+# Простой автоматический конвейер машинного обучения
 
-The repository is an educational project aimed at creating a simple pipeline for automating work with a machine learning model.
+Репозиторий представляет собой учебный проект, направленный на создание простого конвейера для автоматизации работы с моделью машинного обучения.
 
-The project was developed as part of a training task and includes several key stages.
+Проект разработан в рамках учебного задания и включает в себя несколько ключевых этапов.
 
-## Stages
+## Этапы
 
-### 1. Data Creation
+### 1. Создание данных
 
-The script [data_creation.py](python_scripts/data_creation.py) generates various temperature data sets, including anomalies and noise, and stores them in the `train` and `test` folders. Data is generated using the `numpy` library and saved in `CSV` format.
+Скрипт [data_creation.py](python_scripts/data_creation.py) генерирует различные наборы данных о температуре, включая аномалии и шумы, и сохраняет их в папках `train` и `test`. Данные генерируются с использованием библиотеки `numpy` и сохраняются в формате `CSV`.
 
-### 2. Data preprocessing
+### 2. Предобработка данных
 
-The [model_preprocessing.py](python_scripts/model_preprocessing.py) script performs data standardisation using `sklearn.preprocessing.StandardScaler`. This is necessary to ensure stability of the model learning.
+Скрипт [model_preprocessing.py](python_scripts/model_preprocessing.py) выполняет стандартизацию данных с помощью `sklearn.preprocessing.StandardScaler`. Это необходимо для обеспечения стабильности обучения модели.
 
 ### 3. Обучение модели
 
