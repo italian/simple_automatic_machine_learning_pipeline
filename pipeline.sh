@@ -57,13 +57,13 @@ install_deps
 n_datasets=$1
 
 # Запуск скрипта создания данных
-python data_creation.py $n_datasets
+python python_scripts/data_creation.py $n_datasets
 
 # Запуск скрипта предобработки данных
-python model_preprocessing.py $n_datasets
+python python_scripts/model_preprocessing.py $n_datasets
 
 # Запуск скрипта подготовки и обучения модели
-python model_preparation.py $n_datasets
+python python_scripts/model_preparation.py $n_datasets
 
 # Запуск скрипта тестирования модели
-python model_testing.py $n_datasets
+python python_scripts/model_testing.py $n_datasets
