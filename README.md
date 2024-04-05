@@ -14,15 +14,15 @@ The script [data_creation.py](python_scripts/data_creation.py) generates various
 
 ### 2. Data preprocessing
 
-The [model_preprocessing.py](python_scripts/model_preprocessing.py) script performs data standardisation using `sklearn.preprocessing.StandardScaler`. This is necessary to ensure stability of the model learning.
+The [model_preprocessing.py](python_scripts/model_preprocessing.py) script performs data standardisation using `sklearn.preprocessing.StandardScaler`. This is necessary to ensure stability of the model training.
 
-### 3. Обучение модели
+### 3. Model training
 
-Скрипт [model_preparation.py](python_scripts/model_preparation.py) создает и обучает модель машинного обучения на данных из папки `train`. В качестве модели используется логистическая регрессия из библиотеки `sklearn`. После обучения модель сохраняется в формате `.pkl` для дальнейшего использования.
+The script [model_preparation.py](python_scripts/model_preparation.py) creates and trains a machine learning model using data from the `train` folder. The model used is logistic regression from the `sklearn` library. After training, the model is saved in `.pkl` format for further use.
 
-### 4. Тестирование модели
+### 4. Model testing
 
-Скрипт [model_testing.py](python_scripts/model_testing.py) проверяет производительность обученной модели на данных из папки `test`. Для оценки производительности используются метрики `accuracy`, `precision`, `recall`, `F1-score`.
+The [model_testing.py](python_scripts/model_testing.py) script tests the performance of a trained model on data from the `test` folder. The metrics `accuracy`, `precision`, `recall`, `F1-score` are used to evaluate the performance.
 
 ### 5. Автоматизация конвейера
 
