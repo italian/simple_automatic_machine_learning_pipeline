@@ -401,3 +401,6 @@ FodyWeavers.xsd
 test
 train
 models
+
+# folder for virtual environment
+.venv
