@@ -9,28 +9,28 @@ import joblib
 import sys
 
 
-# Функция для тестирования модели
+# Function for model testing
 def test_model(model_path, test_data_path):
-    # Загрузка обученной модели
+    # Loading a trained model
     model = joblib.load(model_path)
 
-    # Загрузка тестовых данных
+    # Loading test data
     df_test = pd.read_csv(test_data_path)
 
-    # Разделение данных на признаки и целевую переменную
+    # Separating data into features and target variable
     X_test = df_test[['temperature']]
     y_test = df_test['anomaly']
 
-    # Предсказание на тестовых данных
+    # Prediction on test data
     y_pred = model.predict(X_test)
 
-    # Вычисление метрик
+    # Calculation of metrics
     accuracy = accuracy_score(y_test, y_pred)
     precision = precision_score(y_test, y_pred)
     recall = recall_score(y_test, y_pred)
     f1 = f1_score(y_test, y_pred)
 
-    # Создание DataFrame для результатов
+    # Creating a DataFrame for the results
     results = pd.DataFrame({
         'Accuracy': [accuracy],
         'Precision': [precision],
@@ -41,20 +41,20 @@ def test_model(model_path, test_data_path):
     return results
 
 
-# Получение количества наборов данных
+# Getting the number of datasets
 if len(sys.argv) > 1:
     n_datasets = int(sys.argv[1])
 else:
-    n_datasets = 1  # Значение по умолчанию, если аргумент не передан
+    n_datasets = 1  # Default value if no argument is passed
 
 for i in range(n_datasets):
-    # Путь к обученной модели
+    # Path to a trained model
     model_path = f'models/model_{i+1}.pkl'
-    # Путь к тестовым данным
+    # Path to test data
     test_data_path = f'test/temperature_test_{i+1}_preprocessed.csv'
 
-    # Тестирование модели
+    # Model testing
     results = test_model(model_path, test_data_path)
-    print(f"Модель для набора данных {i+1} протестирована.")
+    print(f"The model for dataset {i+1} is tested.")
     print(results.to_string(index=False))
     print('-' * 20)

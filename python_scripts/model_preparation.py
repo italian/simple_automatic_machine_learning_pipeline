@@ -12,35 +12,35 @@ import os
 import sys
 
 
-# Функция для обучения модели и вычисления метрик
+# Function for model training and metrics calculation
 def train_model_and_evaluate(file_path):
-    # Загрузка данных
+    # Data loading
     df = pd.read_csv(file_path)
 
-    # Перемешивание данных
+    # Data shuffling
     # df = df.sample(frac=1).reset_index(drop=True)
     df = shuffle(df, random_state=42)
 
-    # Разделение данных на признаки и целевую переменную
+    # Separating data into features and target variable
     X = df[['temperature']]  # type: ignore
     y = df['anomaly']  # type: ignore
 
-    # Создание экземпляра модели логистической регрессии
+    # Creating an instance of the logistic regression model
     model = LogisticRegression()
 
-    # Обучение модели
+    # Training of the model
     model.fit(X, y)
 
-    # Предсказание на обучающих данных
+    # Prediction on training data
     y_pred = model.predict(X)
 
-    # Вычисление метрик
+    # Calculation of metrics
     accuracy = accuracy_score(y, y_pred)
     precision = precision_score(y, y_pred)
     recall = recall_score(y, y_pred)
     f1 = f1_score(y, y_pred)
 
-    # Создание DataFrame для результатов
+    # Creating a DataFrame for the results
     results = pd.DataFrame({
         'Accuracy': [accuracy],
         'Precision': [precision],
@@ -51,23 +51,23 @@ def train_model_and_evaluate(file_path):
     return model, results
 
 
-# Получение количества наборов данных
+# Getting the number of data sets
 if len(sys.argv) > 1:
     n_datasets = int(sys.argv[1])
 else:
-    n_datasets = 1  # Значение по умолчанию, если аргумент не передан
+    n_datasets = 1  # Default value if no argument is passed
 
-# Создание директории для хранения моделей
+# Creating a directory for storing models
 os.makedirs('models', exist_ok=True)
 
 for i in range(n_datasets):
-    # Обучение модели на предобработанных данных
+    # Training the model on preprocessed data
     model, results = train_model_and_evaluate(
         f'train/temperature_train_{i+1}_preprocessed.csv')
 
-    # Сохранение обученной модели
+    # Saving the trained model
     joblib.dump(model, f'models/model_{i+1}.pkl')
 
-    print(f"Модель для набора данных {i+1} обучена.")
+    print(f"The model for the data set {i+1} is trained.")
     print(results.to_string(index=False))
     print('-' * 20)

@@ -3,37 +3,37 @@ import sys
 from sklearn.preprocessing import StandardScaler
 
 
-# Функция для предобработки данных
+# Function for data preprocessing
 def preprocess_data(file_path):
-    # Загрузка данных
+    # Data loading
     df = pd.read_csv(file_path)
 
-    # Создание экземпляра StandardScaler
+    # Creating a StandardScaler instance
     scaler = StandardScaler()
 
-    # Применение StandardScaler к данным
+    # Applying StandardScaler to data
     scaled_data = scaler.fit_transform(df[['temperature']])
 
-    # Сохранение предобработанных данных
+    # Saving preprocessed data
     df['temperature'] = scaled_data
 
     return df
 
 
-# Получение количества наборов данных
+# Getting the number of data sets
 if len(sys.argv) > 1:
     n_datasets = int(sys.argv[1])
 else:
-    n_datasets = 1  # Значение по умолчанию, если аргумент не передан
+    n_datasets = 1  # Default value if no argument is passed
 
 for i in range(n_datasets):
-    # Предобработка и сохранение данных для обучения
+    # Preprocessing and storing data for training
     train_data_preprocessed = preprocess_data(
         f'train/temperature_train_{i+1}.csv')
     train_data_preprocessed.to_csv(
         f'train/temperature_train_{i+1}_preprocessed.csv', index=False)
 
-    # Предобработка и сохранение данных для тестирования
+    # Preprocessing and saving data for testing
     test_data_preprocessed = preprocess_data(
         f'test/temperature_test_{i+1}.csv')
     test_data_preprocessed.to_csv(

@@ -1,69 +1,69 @@
 #!/bin/bash
 
-# Функция для создания виртуальной среды
+# Function for creating a virtual environment
 create_venv() {
     local env_name=${1:-".venv"}
     python3 -m venv "$env_name"
-    echo "Виртуальная среда '$env_name' создана."
+    echo "The virtual environment '$env_name' has been created."
 }
 
-# Функция для активации виртуальной среды
+# Function to activate the virtual environment
 activate_venv() {
     local env_name=${1:-".venv"}
     if [ ! -d "$env_name" ]; then
-        echo "Виртуальная среда '$env_name' не найдена. Используйте '$0 create [env_name]' для создания."
+        echo "Virtual environment '$env_name' not found. Use '$0 create [env_name]' to create."
         return 1
     fi
     if [ -z "$VIRTUAL_ENV" ]; then
         source "./$env_name/bin/activate"
-        echo "Виртуальная среда '$env_name' активирована."
+        echo "Virtual environment '$env_name' is activated."
     else
-        echo "Виртуальная среда уже активирована."
+        echo "The virtual environment has already been activated."
     fi
 }
 
-# Функция для установки зависимостей из requirements.txt
+# Function for installing dependencies from requirements.txt
 install_deps() {
     if [ ! -f "requirements.txt" ]; then
-        echo "Файл requirements.txt не найден."
+        echo "File requirements.txt not found."
         return 1
     fi
 
-    # Проверка, установлены ли все зависимости из requirements.txt
+    # Check if all dependencies from requirements.txt are installed
     for package in $(cat requirements.txt | cut -d '=' -f 1); do
         if ! pip freeze | grep -q "^$package=="; then
-            echo "Установка зависимостей..."
+            echo "Dependency installation..."
             pip install -r requirements.txt
-            echo "Зависимости установлены."
+            echo "Dependencies installed."
             return 0
         fi
     done
 
-    echo "Все зависимости уже установлены."
+    echo "All dependencies are already installed."
 }
 
-# Создание виртуальной среды, если она еще не создана
+# Creating a virtual environment, if not already created
 if [ ! -d ".venv" ]; then
     create_venv
 fi
 
-# Активация виртуальной среды
+# Activating the virtual environment
 activate_venv
 
-# Установка зависимостей
+# Dependency installation
 install_deps
 
-# Получение количества наборов данных
+# Getting the number of datasets
 n_datasets=$1
 
-# Запуск скрипта создания данных
+# Running the data creation script
 python python_scripts/data_creation.py $n_datasets
 
-# Запуск скрипта предобработки данных
+# Running the data preprocessing script
 python python_scripts/model_preprocessing.py $n_datasets
 
-# Запуск скрипта подготовки и обучения модели
+# Running the model preparation and training script
 python python_scripts/model_preparation.py $n_datasets
 
-# Запуск скрипта тестирования модели
+# Running the model testing script
 python python_scripts/model_testing.py $n_datasets
