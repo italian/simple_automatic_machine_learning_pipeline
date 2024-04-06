@@ -1,4 +1,4 @@
-[![en](https://img.shields.io/badge/lang-en-blue.svg)](https://github.com/italian/simple_automatic_machine_learning_pipeline/blob/main/README.md)
+[![en](https://img.shields.io/badge/lang-en-blue.svg)](/README.md)
 
 # Простой автоматический конвейер машинного обучения
 

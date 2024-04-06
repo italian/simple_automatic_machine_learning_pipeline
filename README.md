@@ -1,4 +1,4 @@
-[![ru](https://img.shields.io/badge/lang-ru-red.svg)](https://github.com/italian/simple_automatic_machine_learning_pipeline/blob/main/README.ru.md)
+[![ru](https://img.shields.io/badge/lang-ru-red.svg)](/README.ru.md)
 
 # Simple automatic machine learning pipeline
 
@@ -24,49 +24,49 @@ The script [model_preparation.py](python_scripts/model_preparation.py) creates a
 
 The [model_testing.py](python_scripts/model_testing.py) script tests the performance of a trained model on data from the `test` folder. The metrics `accuracy`, `precision`, `recall`, `F1-score` are used to evaluate the performance.
 
-### 5. Автоматизация конвейера
+### 5. Pipeline automation
 
-Bash-скрипт [pipeline.sh](./pipeline.sh) позволяет запустить весь конвейер автоматически, последовательно запуская все python-скрипты. Скрипт также создает виртуальную среду и устанавливает необходимые зависимости из файла `requirements.txt`.
+The bash script [pipeline.sh](./pipeline.sh) allows you to run the entire pipeline automatically by running all python scripts sequentially. The script also creates a virtual environment and installs the necessary dependencies from the `requirements.txt` file.
 
-## Использование
+## Usage
 
-Для запуска конвейера, клонируйте репозиторий и выполните команду `./pipeline.sh` в терминале.
+To run a pipeline, clone the repository and run the command `./pipeline.sh` in a terminal.
 
-Параметры:
+Parameters:
 
-- **Опциональный параметр**: Количество наборов данных для создания. По умолчанию создается один набор данных.
+- **Optional parameter**: Number of datasets to create. By default, one dataset is created.
 
-Примеры использования:
+Usage Examples:
 
-- Запуск скрипта без параметров (создается один набор данных):
+- Running the script without parameters (one dataset is created):
     ```shell
     ./pipeline.sh
     ```
-- Запуск скрипта с указанием количества наборов данных (например, 5 наборов):
+- Running the script with the number of datasets specified (e.g., 5 datasets):
     ```shell
     ./pipeline.sh 5
     ```
 
-Убедитесь, что у вас установлены все необходимые зависимости, указанные в файле [requirements.txt](./requirements.txt).
+Make sure you have all the required dependencies installed, as specified in the [requirements.txt](./requirements.txt) file.
 
-## Требования
+## Requirements
 
 - Python 3.7+
-- Библиотеки:
+- Libraries:
     - numpy,
     - pandas,
     - sklearn
 
-## Возможные проблемы и способы их решения
+## Possible problems and solutions
 
-- **Проблема с активацией виртуальной среды в `pipeline.sh`**: Использование в скрипте [pipeline.sh](./pipeline.sh) внутри функции `activate_venv` переменной `$VIRTUAL_ENV` для проверки активации виртуальной среды может быть ненадежным в некоторых случаях, например, когда скрипт запускается внутри сессии `tmux` или `screen`, созданной в активированной виртуальной среде. В таких случаях `$VIRTUAL_ENV` может оставаться установленным, даже если виртуальная среда не активна в текущем контексте.
-    - **Возможное решение**: Использовать другие методы для проверки активации виртуальной среды или избегать использования виртуальных сред в таких сценариях.
+- **Virtual environment activation problem in `pipeline.sh`**: The use of the `$VIRTUAL_ENV` variable in the [pipeline.sh](./pipeline.sh) script inside the `activate_venv` function to check for virtual environment activation may be unreliable in some cases, such as when the script is run inside an `tmux` or `screen` session created in an activated virtual environment. In such cases, `$VIRTUAL_ENV` may remain set even if the virtual environment is not active in the current context.
+    - **Possible Solution**: Use other methods to verify virtual environment activation or avoid using virtual environments in such scenarios.
 
-## Улучшения
+## Improvements
 
-- **Добавление поддержки других моделей машинного обучения**: В текущей реализации используется только логистическая регрессия. Добавление поддержки других моделей, таких как деревья решений или нейронные сети, может расширить возможности проекта.
-- **Интеграция с системами CI/CD**: Интеграция с системами непрерывной интеграции и непрерывной доставки (CI/CD) может автоматизировать процесс тестирования и развертывания модели, улучшая процесс разработки.
+- **Add support for other machine learning models**: The current implementation only uses logistic regression. Adding support for other models, such as decision trees or neural networks, can extend the capabilities of the project.
+- **Integration with CI/CD systems**: Integration with Continuous Integration and Continuous Delivery (CI/CD) systems can automate the model testing and deployment process, improving the development process.
 
-## Лицензия
+## Licence
 
-Этот проект распространяется под лицензией MIT.
+This project is distributed under the MIT licence.
