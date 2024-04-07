@@ -46,7 +46,7 @@ if len(sys.argv) > 1:
     n_datasets = int(sys.argv[1])
 else:
     n_datasets = 1  # Default value if no argument is passed
-
+print()
 for i in range(n_datasets):
     # Path to a trained model
     model_path = f'models/model_{i+1}.pkl'
