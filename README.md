@@ -32,7 +32,7 @@ The bash script [pipeline.sh](./pipeline.sh) allows you to run the entire pipeli
 
 To run a pipeline, clone the repository and run the command `./pipeline.sh` in a terminal.
 
-Parameters:
+### Parameters:
 
 - **Optional parameter**: Number of datasets to create. By default, one dataset is created.
 
@@ -48,6 +48,22 @@ Usage Examples:
     ```
 
 Make sure you have all the required dependencies installed, as specified in the [requirements.txt](./requirements.txt) file.
+
+### Example output
+```
+Virtual environment '.venv' is activated.
+All dependencies are already installed.
+
+The model for the data set 1 is trained.
+ Accuracy  Precision  Recall  F1-score
+ 0.950909   0.925926     0.5  0.649351
+--------------------
+
+The model for dataset 1 is tested.
+ Accuracy  Precision  Recall  F1-score
+ 0.954545        1.0     0.5  0.666667
+--------------------
+```
 
 ## Requirements
 

@@ -32,7 +32,7 @@ Bash-скрипт [pipeline.sh](./pipeline.sh) позволяет запусти
 
 Для запуска конвейера, клонируйте репозиторий и выполните команду `./pipeline.sh` в терминале.
 
-Параметры:
+### Параметры
 
 - **Опциональный параметр**: Количество наборов данных для создания. По умолчанию создается один набор данных.
 
@@ -48,6 +48,22 @@ Bash-скрипт [pipeline.sh](./pipeline.sh) позволяет запусти
     ```
 
 Убедитесь, что у вас установлены все необходимые зависимости, указанные в файле [requirements.txt](./requirements.txt).
+
+### Пример вывода
+```
+Virtual environment '.venv' is activated.
+All dependencies are already installed.
+
+The model for the data set 1 is trained.
+ Accuracy  Precision  Recall  F1-score
+ 0.950909   0.925926     0.5  0.649351
+--------------------
+
+The model for dataset 1 is tested.
+ Accuracy  Precision  Recall  F1-score
+ 0.954545        1.0     0.5  0.666667
+--------------------
+```
 
 ## Требования
 
