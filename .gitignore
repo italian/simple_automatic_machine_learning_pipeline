@@ -397,10 +397,11 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-# folders with train and test data and stored trained models
+# folders with train and test data and stored trained models, data
 test
 train
 models
+data
 
 # folder for virtual environment
 *.venv
