@@ -22,5 +22,3 @@ os.makedirs('test', exist_ok=True)
 # Saving training and test samples to CSV files
 train_df.to_csv('train/wine_train.csv', index=False)
 test_df.to_csv('test/wine_test.csv', index=False)
-
-print('done')
