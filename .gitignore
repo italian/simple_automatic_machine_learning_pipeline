@@ -403,4 +403,4 @@ train
 models
 
 # folder for virtual environment
-.venv
+*.venv
