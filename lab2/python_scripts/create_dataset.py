@@ -17,5 +17,5 @@ print(df.describe())
 # Create directories for data storage
 os.makedirs('data', exist_ok=True)
 
-# Saving training and test samples to CSV files
+# Saving data to CSV files
 df.to_csv('data/wine.csv', index=False)
