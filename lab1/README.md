@@ -2,7 +2,7 @@
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](https://github.com/italian/simple_automatic_machine_learning_pipeline/blob/main/LICENSE)
 
-# Simple automatic machine learning pipeline
+# Simple automatic machine learning pipeline using bash
 
 This is an implementation of a simple pipeline for automating machine learning model work in bash.
 
