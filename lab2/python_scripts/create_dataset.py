@@ -12,6 +12,7 @@ df = pd.DataFrame(data=X, columns=wine.feature_names)  # type: ignore
 df['target'] = y
 
 print(df.info())
+print(df.describe())
 
 # Create directories for data storage
 os.makedirs('data', exist_ok=True)
