@@ -20,7 +20,7 @@ model.fit(X_train, y_train['target'])
 # Model quality assessment using training data
 y_pred = model.predict(X_train)
 
-# Calculation of metrics
+# Calculating model quality metrics
 accuracy = accuracy_score(y_train['target'], y_pred)
 precision = precision_score(y_train['target'], y_pred, average='weighted')
 recall = recall_score(y_train['target'], y_pred, average='weighted')
