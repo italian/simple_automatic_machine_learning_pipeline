@@ -31,16 +31,16 @@ pipeline {
 
                     echo 'Dependency installation'
                     sh '''
-                        if [ ! -f "requirements.txt" ]; then
+                        if [ ! -f "lab2/requirements.txt" ]; then
                             echo "File requirements.txt not found."
                             return 1
                         fi
 
                         # Check if all dependencies from requirements.txt are installed
-                        for package in $(cat requirements.txt | cut -d '=' -f 1); do
+                        for package in $(cat lab2/requirements.txt | cut -d '=' -f 1); do
                             if ! pip freeze | grep -q "^$package=="; then
                                 echo "Dependency installation..."
-                                pip install -r requirements.txt
+                                pip install -r lab2/requirements.txt
                                 echo "Dependencies installed."
                                 return 0
                             fi
@@ -54,28 +54,28 @@ pipeline {
         stage('Create dataset') {
             steps {
                 echo 'Start create dataset'
-                sh 'python3 python_scripts/create_dataset.py'
+                sh 'python3 lab2/python_scripts/create_dataset.py'
                 echo 'Finish create dataset'
             }
         }
         stage('Data preprocessing') {
             steps {
                 echo 'Start data preprocessing'
-                sh 'python3 python_scripts/data_preprocessing.py'
+                sh 'python3 lab2/python_scripts/data_preprocessing.py'
                 echo 'Finish data preprocessing'
             }
         }
         stage('Train model') {
             steps {
                 echo 'Start train model'
-                sh 'python3 python_scripts/train_model.py'
+                sh 'python3 lab2/python_scripts/train_model.py'
                 echo 'Finish train model'
             }
         }
         stage('Test model') {
             steps {
                 echo 'Start test model'
-                sh 'python3 python_scripts/test_model.py'
+                sh 'python3 lab2/python_scripts/test_model.py'
                 echo 'Finish test model'
             }
         }
