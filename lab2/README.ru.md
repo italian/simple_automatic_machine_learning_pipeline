@@ -41,7 +41,7 @@
 2. **Настройка Pipeline**.
    - В разделе Pipeline, выберите Pipeline script from SCM.
    - В поле Repository URL введите путь к этому репозиторию (`https://github.com/italian/simple_automatic_machine_learning_pipeline`).
-   - Убедитесь, что выбрана правильный ветвь main.
+   - Убедитесь, что выбрана правильная ветвь main.
    - В поле Script Path укажите путь к Jenkinsfile - `lab2/Jenkinsfile`.
    - Нажмите Save.
 3. **Запуск Pipeline**.
