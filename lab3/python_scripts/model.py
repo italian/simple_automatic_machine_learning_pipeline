@@ -24,18 +24,24 @@ def predict(sample):
     return prediction
 
 
+def custom_slider_with_input(label, min_value, max_value, default_value):
+    slider_value = st.slider(label, min_value, max_value, default_value, step=0.1, format="%.1f")
+    input_value = st.number_input(f"Введите {label}:", min_value, max_value, slider_value, step=0.1, format="%.1f")
+    return input_value
+
+
 # Веб-интерфейс с помощью Streamlit
 st.title('Модель логистической регрессии на датасете Iris')
 
 # Ввод данных для предсказания
-sepal_length = st.number_input(
-    'Длина чашелистика', min_value=0.0, max_value=10.0, value=0.0)
-sepal_width = st.number_input(
-    'Ширина чашелистика', min_value=0.0, max_value=10.0, value=0.0)
-petal_length = st.number_input(
-    'Длина лепестка', min_value=0.0, max_value=10.0, value=0.0)
-petal_width = st.number_input(
-    'Ширина лепестка', min_value=0.0, max_value=10.0, value=0.0)
+sepal_length = custom_slider_with_input(
+    'Длина чашелистика', min_value=0.0, max_value=10.0, default_value=0.0)
+sepal_width = custom_slider_with_input(
+    'Ширина чашелистика', min_value=0.0, max_value=10.0, default_value=0.0)
+petal_length = custom_slider_with_input(
+    'Длина лепестка', min_value=0.0, max_value=10.0, default_value=0.0)
+petal_width = custom_slider_with_input(
+    'Ширина лепестка', min_value=0.0, max_value=10.0, default_value=0.0)
 
 if st.button('Предсказать'):
     sample = np.array(
