@@ -27,3 +27,7 @@ model.fit(X_train_scaled, y_train)
 dump(model, 'model.joblib')
 with open('scaler.pkl', 'wb') as f:
     pickle.dump(scaler, f)
+
+# Сохранение target_names в файл
+with open('target_names.pkl', 'wb') as f:
+    pickle.dump(iris.target_names, f)  # type: ignore

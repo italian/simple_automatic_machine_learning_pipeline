@@ -2,13 +2,15 @@ import streamlit as st
 import numpy as np
 from joblib import load
 import pickle
-from sklearn.datasets import load_iris
 
 # Загрузка модели и преобразователя
-iris = load_iris()
 model = load('/model/model.joblib')
 with open('/model/scaler.pkl', 'rb') as f:
     scaler = pickle.load(f)
+
+# Загрузка target_names из файла
+with open('/model/target_names.pkl', 'rb') as f:
+    target_names = pickle.load(f)
 
 st.title('Модель логистической регрессии на датасете Iris')
 
@@ -33,4 +35,4 @@ if st.button('Предсказать'):
     sample_scaled = scaler.transform(sample)
     prediction = model.predict(sample_scaled)
     st.write(
-        f'Предсказание: {iris.target_names[prediction[0]]}') # type: ignore
+        f'Предсказание: {target_names[prediction[0]]}')  # type: ignore
