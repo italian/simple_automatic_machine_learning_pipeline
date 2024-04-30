@@ -14,6 +14,8 @@ The project was developed as part of a training task and includes several module
 
 ### 2. [Simple automatic machine learning pipeline using Jenkins](./lab2/)
 
+### 3. [A simple automated machine learning system using Docker Compose](./lab3/)
+
 ## Licence
 
 This project is distributed under the MIT licence.
