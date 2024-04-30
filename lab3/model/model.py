@@ -5,29 +5,29 @@ from sklearn.preprocessing import StandardScaler
 from joblib import dump
 import pickle
 
-# Загрузка датасета
+# Dataset loading
 iris = load_iris()
-X = iris.data # type: ignore
-y = iris.target # type: ignore
+X = iris.data  # type: ignore
+y = iris.target  # type: ignore
 
-# Разделение датасета на тренировочный и тестовый
+# Dividing the dataset into training and test
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42, shuffle=True)
 
-# Нормализация тренировочных данных
+# Normalisation of data
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
-# Создание и обучение модели
+# Creating and training the model
 model = LogisticRegression(max_iter=1000)
 model.fit(X_train_scaled, y_train)
 
-# Сохранение модели и преобразователя
+# Saving the model and scaler
 dump(model, 'model.joblib')
 with open('scaler.pkl', 'wb') as f:
     pickle.dump(scaler, f)
 
-# Сохранение target_names в файл
+# Saving target_names to a file
 with open('target_names.pkl', 'wb') as f:
     pickle.dump(iris.target_names, f)  # type: ignore

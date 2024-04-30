@@ -1,14 +1,14 @@
-# Используйте официальный образ Python
+# Using the official Python image
 FROM python:3.8-slim
 
-# Установите рабочую директорию в контейнере
+# Setting the working directory in the container
 WORKDIR /streamlit_app
 
-# Копируйте файлы
+# Copying files
 COPY . .
 
-# Установите зависимости
+# Dependency installation
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Запускаем приложение
+# Launching the application
 CMD ["streamlit", "run", "streamlit_app.py"]
