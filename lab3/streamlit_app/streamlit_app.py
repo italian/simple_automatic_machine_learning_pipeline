@@ -30,12 +30,15 @@ with st.container():
         step=0.1, format="%.1f")
 
     if st.button('Predict'):
-        sample = np.array(
-            [sepal_length, sepal_width, petal_length, petal_width]).reshape(1, -1)
+        sample = np.array([
+            sepal_length,
+            sepal_width,
+            petal_length,
+            petal_width
+            ]).reshape(1, -1)
         # Input data normalisation
         sample_scaled = scaler.transform(sample)
         prediction = model.predict(sample_scaled)
-        st.markdown(f"### Prediction")
+        st.markdown("### Prediction")
         st.markdown(
             f"The predicted species is: **{target_names[prediction[0]]}**")
-
